@@ -13,14 +13,12 @@ all_data = f'''"Name: {name}"
 print(all_data)
 
 # Q3
-print(f'"Hello {name} Your age is {age - 5} Years old, Your Address is {address}."')
-
-print('Hello {', name, '} Your age is', age - 5, 'Years old, Your Address is', address)
+print('"Hello {', name, '} Your age is', age - 5, 'Years old, Your Address is', address, '."')
 
 # Q4
 print(type(name), end=" ")
-print(type(age))
-print(type(street), end=" ")
+print(type(str(age)))
+print(type(str(street)), end=" ")
 print(type(city))
 print(type(country))
 
@@ -80,6 +78,9 @@ print(txt.title())
 
 # Q14
 first_name = "Dema"
+print('{:*^50}'.format(first_name).rstrip('*'))
+print('{:*^50}'.format(first_name))
+print('{:*^50}'.format(first_name).lstrip('*'))
 
 # Q15
 name_one = "SaMER"
@@ -95,7 +96,7 @@ print(name_two.islower())
 
 # Q17
 print(name_one[0] == "S")
-print(name_two[2:] == "ed")
+print(name_two[-2:] == "HD")
 
 # Q18
 msg = "I Love Python And Although I Love GSG with Zakaria"
@@ -109,71 +110,35 @@ print('Number of <t> is:' + str(msg.count('t')))
 msg = "I %7 Python And Although I %7 GSG with Zakaria"
 print(msg.replace('%7', 'Love', 1))
 
-# Q20 متاكدة اله حل اسهل من هيك هافكر فيه و اعدل
-test1 = "ZakZak"
-test2 = "Zakaria"
-test3 = "A war at Tarawa.".lower()
-test4 = "madam"
+# Q20
+def isPalindrome(s):
+    return s == s[::-1]
 
-test3_rep = test3.replace(" ", "")
-test3_rep = test3_rep.replace('.', '')
+def isSymmetrical(a, b):
+    return a == b
 
-half = int(len(test1)/2)
-first_str = test1[:half]
-last_str = test1[half:]
-
-if first_str == last_str:
-    if test1 == test1[::-1]:
-        print(test1 + ' is symmetrical, but ' + test1 + ' is a palindrome.')
+my_list = ['ZakZak', "Zakaria", "A war at Tarawa.", "madam"]
+first_half = ''
+last_half = ''
+num = -1
+for item in my_list:
+    item = str("".join(item.split()).rstrip(".").lower())
+    first_half = item[:int(len(item)/2)]
+    last_half = item[int(len(item)/2):]
+    pal = isPalindrome(item)
+    sym = isSymmetrical(first_half, last_half)
+    num += 1
+    if sym:
+        if pal:
+            print(my_list[num] + ' is symmetrical, and ' + my_list[num] + ' is a palindrome.')
+            print('#' * 50)
+        else:
+            print(my_list[num] + ' is symmetrical, but ' + my_list[num] + ' is NOT a palindrome.')
+            print('#' * 50)
     else:
-        print(test1 + ' is symmetrical, but ' + test1 + ' is NOT a palindrome.')
-else:
-    if test1 == test1[::-1]:
-        print(test1 + ' is NOT symmetrical, and ' + test1 + ' is a palindrome.')
-    else:
-        print(test1 + ' is NOT symmetrical, and ' + test1 + ' is NOT a palindrome.')
-
-half = int(len(test2)/2)
-first_str = test2[:half]
-last_str = test2[half:]
-
-if first_str == last_str:
-    if test2 == test2[::-1]:
-        print(test2 + ' is symmetrical, but ' + test2 + ' is a palindrome.')
-    else:
-        print(test2 + ' is symmetrical, but ' + test2 + ' is NOT a palindrome.')
-else:
-    if test2 == test2[::-1]:
-        print(test2 + ' is NOT symmetrical, and ' + test2 + ' is a palindrome.')
-    else:
-        print(test2 + ' is NOT symmetrical, and ' + test2 + ' is NOT a palindrome.')
-
-half = int(len(test3_rep)/2)
-first_str = test3_rep[:half]
-last_str = test3_rep[half:]
-
-if first_str == last_str:
-    if test3_rep == test3_rep[::-1]:
-        print(test3 + ' is symmetrical, but ' + test3 + ' is a palindrome.')
-    else:
-        print(test3 + ' is symmetrical, but ' + test3 + ' is NOT a palindrome.')
-else:
-    if test3_rep == test3_rep[::-1]:
-        print(test3 + ' is NOT symmetrical, and ' + test3 + ' is a palindrome.')
-    else:
-        print(test3 + ' is NOT symmetrical, and ' + test3 + ' is NOT a palindrome.')
-
-half = int(len(test4)/2)
-first_str = test4[:half]
-last_str = test4[half:]
-
-if first_str == last_str:
-    if test4 == test4[::-1]:
-        print(test4 + ' is symmetrical, but ' + test4 + ' is a palindrome.')
-    else:
-        print(test4 + ' is symmetrical, but ' + test4 + ' is NOT a palindrome.')
-else:
-    if test4 == test4[::-1]:
-        print(test4 + ' is NOT symmetrical, and ' + test4 + ' is a palindrome.')
-    else:
-        print(test4 + ' is NOT symmetrical, and ' + test4 + ' is NOT a palindrome.')
+        if pal:
+            print(my_list[num] + ' is not symmetrical, but ' + my_list[num] + ' is a palindrome.')
+            print('#' * 50)
+        else:
+            print(my_list[num] + ' is not symmetrical, and ' + my_list[num] + ' is NOT a palindrome.')
+            print('#' * 50)
